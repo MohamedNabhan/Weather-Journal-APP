@@ -10,6 +10,17 @@ JAVACSRIPT
 HTML
 CSS
 
+## HOW TO USE
+
+- Download Zip File Or clone Project
+
+- Open cmd in project file
+
+- run node server.js
+
+- open in Browser: http://localhost:3001/
+
+
 ## Description
 
 A Weather APP Gets Location ZIP And Mood then Return Temprature/Day/Mood 
