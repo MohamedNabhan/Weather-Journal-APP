@@ -4,8 +4,8 @@
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-let baseURL = 'http://api.openweathermap.org/data/2.5/forecast?zip='
-let apiKey = '&appid=9de15a745db61e13b56676499b7d768b';
+const baseURL = 'http://api.openweathermap.org/data/2.5/forecast?zip='
+const apiKey = '&appid=9de15a745db61e13b56676499b7d768b&units=metric';
 
 
 
@@ -20,7 +20,7 @@ function getUserCredentials(e) {
     .then((data) => {
         console.log(data);
         const day = data.list[0].dt_txt.slice(0,10);
-        postData('/weather', {temp:data.list[0].main.temp,date:day, userRes: userFav})
+        postData('/add', {temp:data.list[0].main.temp,date:day, userRes: userFav})
         updateUI();
     })
 }
@@ -61,9 +61,9 @@ const postData = async ( url = '', data = {})=>{
     const res = await fetch('/get')
     try {
         const userData = await res.json();
-        document.getElementById('temp').innerHTML = "Your Temprature: " + userData[0].temp;
-        document.getElementById('date').innerHTML = "Your Date: " + userData[0].date;
-        document.getElementById('content').innerHTML = "Your MOOD: " + userData[0].userRes;
+        document.getElementById('temp').innerHTML = `Your Temprature: ${userData.temp} Celcius`;
+        document.getElementById('date').innerHTML = `Your Date: ${userData.date}`;
+        document.getElementById('content').innerHTML = `I feel: ${userData.userRes}`;
 
       }  catch(error) {
         console.log("error", error);
